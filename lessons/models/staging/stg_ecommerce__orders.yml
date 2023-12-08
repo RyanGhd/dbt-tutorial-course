@@ -3,20 +3,20 @@ models:
   - name: stg_ecommerce__orders
     config:
       materialized: view
-    description: "|"
-          # This model represents the staging table for e-commerce orders.
-          # ## Staging E-commerce Orders
+    description: |
+          This model represents the staging table for e-commerce orders.
+          ## Staging E-commerce Orders
           
-          # This model represents the staging table for e-commerce orders. It contains information about the orders placed by users, including the order ID, user ID, timestamps for creation, return, delivery, and shipment, order status, and the number of items in the order.
+          This model represents the staging table for e-commerce orders. It contains information about the orders placed by users, including the order ID, user ID, timestamps for creation, return, delivery, and shipment, order status, and the number of items in the order.
           
-          # ### Columns
+          ### Columns
           
-          # - `order_id`: The unique identifier for each order.
-          # - `user_id`: The unique identifier for the user who placed the order.
+          - `order_id`: The unique identifier for each order.
+          - `user_id`: The unique identifier for the user who placed the order.
           
-          # ### Usage
+          ### Usage
           
-          # This model is used as a staging table for e-commerce orders. It serves as an intermediate step in the data transformation process before loading the data into the final destination table.
+          This model is used as a staging table for e-commerce orders. It serves as an intermediate step in the data transformation process before loading the data into the final destination table.
     columns:
       - name: order_id
         description: "The unique identifier for an order."
@@ -29,7 +29,9 @@ models:
 
       - name: created_at
         description: "The timestamp when the order was created."
-        # tests:
+        tests:
+          - not_null:
+              where: "status = 'Returned'"
         #   - dbt_utils.expression_is_true:
         #       expression: "status != 'Returned' OR (status = 'Returned' AND returned_at IS NOT NULL)"
 

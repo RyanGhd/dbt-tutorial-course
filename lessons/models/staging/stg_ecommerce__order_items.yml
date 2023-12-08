@@ -1,0 +1,59 @@
+version: 2
+
+sources:
+  - name: order_items
+    tables:
+      - name: order_items
+        meta:
+          table_catalog: bigquery-public-data
+          table_schema: thelook_ecommerce
+          table_name: order_items
+        columns:
+          - name: id
+            description: "ID of the order item"
+            data_type: int64
+            is_nullable: true
+          - name: order_id
+            description: "ID of the order"
+            data_type: int64
+            is_nullable: true
+            tests:
+              - relationships:
+                  to: ref('stg_ecommerce___orders')
+                  field: order_id
+          - name: user_id
+            description: "ID of the user"
+            data_type: int64
+            is_nullable: true
+          - name: product_id
+            description: "ID of the product"
+            data_type: int64
+            is_nullable: true
+          - name: inventory_item_id
+            description: "ID of the inventory item"
+            data_type: int64
+            is_nullable: true
+          - name: status
+            description: "Status of the order item"
+            data_type: string
+            is_nullable: true
+          - name: created_at
+            description: "Timestamp when the order item was created"
+            data_type: timestamp
+            is_nullable: true
+          - name: shipped_at
+            description: "Timestamp when the order item was shipped"
+            data_type: timestamp
+            is_nullable: true
+          - name: delivered_at
+            description: "Timestamp when the order item was delivered"
+            data_type: timestamp
+            is_nullable: true
+          - name: returned_at
+            description: "Timestamp when the order item was returned"
+            data_type: timestamp
+            is_nullable: true
+          - name: sale_price
+            description: "Sale price of the order item"
+            data_type: float64
+            is_nullable: true
