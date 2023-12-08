@@ -1,0 +1,34 @@
+Field name
+Type
+Mode
+Collation
+Default Value 
+Policy Tags 
+Description
+order_id	INTEGER	NULLABLE		
+Default Value
+Description
+user_id	INTEGER	NULLABLE		
+Default Value
+Description
+status	STRING	NULLABLE		
+Default Value
+Description
+gender	STRING	NULLABLE		
+Default Value
+Description
+created_at	TIMESTAMP	NULLABLE		
+Default Value
+Description
+returned_at	TIMESTAMP	NULLABLE		
+Default Value
+Description
+shipped_at	TIMESTAMP	NULLABLE		
+Default Value
+Description
+delivered_at	TIMESTAMP	NULLABLE		
+Default Value
+Description
+num_of_item	INTEGER	NULLABLE		
+Default Value
+Description

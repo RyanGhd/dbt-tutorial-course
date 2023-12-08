@@ -1,0 +1,42 @@
+
+version: 2
+
+sources:
+  - name: thelook_ecommerce
+    database: bigquery-public-data
+    tables:
+      - name: events
+        schema: public
+        identifier: events
+        quoting:
+          identifier: true
+      - name: orders
+        schema: public
+        identifier: orders
+        quoting:
+          identifier: true
+      - name: order_items
+        schema: public
+        identifier: order_items
+        quoting:
+          identifier: true
+      - name: products
+        schema: public
+        identifier: products
+        quoting:
+          identifier: true
+      - name: users
+        schema: public
+        identifier: users
+        quoting:
+          identifier: true
+      - name: inventory_items
+        schema: public
+        identifier: inventory_items
+        quoting:
+          identifier: true
+      - name: distribution_centers
+        schema: public
+        identifier: distribution_centers
+        quoting:
+          identifier: true

@@ -1,4 +1,6 @@
 {
     "turntable.dbtVersion": "1.7",
-    "turntable.warehouse": "bigquery"
+    "turntable.warehouse": "bigquery",
+    "dbt.queryLimit": 500,
+    "dbt.enableNewLineagePanel": true
 }
