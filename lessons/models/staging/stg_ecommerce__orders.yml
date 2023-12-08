@@ -1,38 +1,37 @@
+
 models:
   - name: stg_ecommerce__orders
-    description: |
-          This model represents the staging table for e-commerce orders.
-          It contains information about the orders placed by users, including
-          the order ID, user ID, timestamps for creation, return, delivery, and
-          shipment, order status, and the number of items in the order.
-         
-          ## Staging E-commerce Orders
+    config:
+      materialized: view
+    description: "|"
+          # This model represents the staging table for e-commerce orders.
+          # ## Staging E-commerce Orders
           
-          This model represents the staging table for e-commerce orders. It contains information about the orders placed by users, including the order ID, user ID, timestamps for creation, return, delivery, and shipment, order status, and the number of items in the order.
+          # This model represents the staging table for e-commerce orders. It contains information about the orders placed by users, including the order ID, user ID, timestamps for creation, return, delivery, and shipment, order status, and the number of items in the order.
           
-          ### Columns
+          # ### Columns
           
-          - `order_id`: The unique identifier for each order.
-          - `user_id`: The unique identifier for the user who placed the order.
-          - `created_at`: The timestamp when the order was created.
-          - `return_at`: The timestamp when the order was returned.
-          - `delivery_at`: The timestamp when the order was delivered.
-          - `shipment_at`: The timestamp when the order was shipped.
-          - `order_status`: The status of the order.
-          - `num_items`: The number of items in the order.
+          # - `order_id`: The unique identifier for each order.
+          # - `user_id`: The unique identifier for the user who placed the order.
           
-          ### Usage
+          # ### Usage
           
-          This model is used as a staging table for e-commerce orders. It serves as an intermediate step in the data transformation process before loading the data into the final destination table.
+          # This model is used as a staging table for e-commerce orders. It serves as an intermediate step in the data transformation process before loading the data into the final destination table.
     columns:
       - name: order_id
         description: "The unique identifier for an order."
+        tests:
+          - unique
+          - not_null
 
       - name: user_id
         description: "The unique identifier of the user who placed the order."
 
       - name: created_at
         description: "The timestamp when the order was created."
+        # tests:
+        #   - dbt_utils.expression_is_true:
+        #       expression: "status != 'Returned' OR (status = 'Returned' AND returned_at IS NOT NULL)"
 
       - name: returned_at
         description: "The timestamp when the order was returned, if applicable."
@@ -45,6 +44,16 @@ models:
 
       - name: status
         description: "The current status of the order."
+        tests:
+          - not_null
+          - accepted_values:
+              values:
+                - Cancelled
+                - Complete
+                - Processing
+                - Returned
+                - Shipped
 
       - name: num_of_item
         description: "The number of items in the order."
+        
